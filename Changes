@@ -1,0 +1,6 @@
+Revision history for Perl extension ListModuleDeps.
+
+0.01  Wed Jul  1 03:18:55 2015
+	- original version; created by h2xs 1.23 with options
+		-AXc -n ListModuleDeps
+
