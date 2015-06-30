@@ -36,20 +36,27 @@ __END__
 
 =head1 NAME
 
-ListModuleDeps - Perl extension for blah blah blah
+ListModuleDeps - Perl extension to list dependencies for a given perl module.
 
 =head1 SYNOPSIS
 
   use ListModuleDeps;
-  blah blah blah
+  listRequires('Some::Module')
+  listBuildRequires('Some::Module')
+
 
 =head1 DESCRIPTION
 
-Stub documentation for ListModuleDeps, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
+This module attempts to list dependencies for a given perl module,
+from RPM building perspective.
 
-Blah blah blah.
+1. The tarball for the given module is fetched into a tmp directory (tmpdir can be passed as an arg)
+2. Extract tarball, run perl Makefile.PL to generate MYMETA.json
+3. Read dependencies from MYMETA.json using CPAN::Meta
+4. If MYMETA.json doesn't exist figure dependencies usingother methods
+
+This is written with the intent to split up module dependency resolution done by cpanspec,
+which is an ancient script currently in use to figure module dependencies by RPM packagers.
 
 =head2 EXPORT
 
@@ -70,11 +77,11 @@ If you have a web site set up for your module, mention it here.
 
 =head1 AUTHOR
 
-root, E<lt>root@nonetE<gt>
+Joel Rebello, E<lt>mail.joelr@gmail.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2015 by root
+Copyright (C) 2015 by Joel Rebello
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.20.2 or,
